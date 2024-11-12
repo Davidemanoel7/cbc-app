@@ -1,6 +1,13 @@
-# cbc
+# CBC
 
 A new Flutter project.
+## Project Description
+
+The application was developed to be a tool that centralizes and optimizes the work of researchers in surveying the prices of the main items in the basic food basket. It enables the collection and analysis of data directly from mobile devices, which improves the agility, accuracy and reliability of the information collected.
+
+## Documents
+
+- [Data Model](https://drive.google.com/file/d/1HebWtlTaTeoODppU15kYmEMU1vD9Eoou/view?usp=sharing)
 
 ## Getting Started
 
@@ -16,4 +23,4 @@ For help getting started with Flutter development, view the
 samples, guidance on mobile development, and a full API reference.
 
 
-<p align="center"><strong> CBC 🛒 <strong></p>
+<h3 align="center"><strong> CBC 🛒 <strong></h3>
