@@ -14,7 +14,7 @@ class CacheProvider extends ChangeNotifier {
   String? get refreshToken => _refreshToken;
 
   Future<void> initCache () async {
-    final pref = SharedPreferences.getInstance().then(
+    SharedPreferences.getInstance().then(
       (pref) {
         _acessToken = pref.getString('acess_token');
         // Pegar outros dados...
