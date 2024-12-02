@@ -8,6 +8,7 @@ The application was developed to be a tool that centralizes and optimizes the wo
 ## Documents
 
 - [Data Model](https://drive.google.com/file/d/1HebWtlTaTeoODppU15kYmEMU1vD9Eoou/view?usp=sharing)
+- [Screen](https://www.figma.com/design/U6KpPPEuVtSwGRc6GkvQOf/CBC-APP-(Components)?node-id=0-1&node-type=canvas&t=nurdt1wYkcKmVdny-0)
 
 ## Getting Started
 
