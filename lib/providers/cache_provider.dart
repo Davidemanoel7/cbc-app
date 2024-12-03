@@ -44,7 +44,7 @@ class CacheProvider extends ChangeNotifier {
     }
   }
 
-  Future<void> gettemFromCache( String key, TypeKey typeKey ) async {
+  Future<void> getItemFromCache( String key, TypeKey typeKey ) async {
     switch( typeKey ) {
       case TypeKey.string:
         await _pref.then(( p ) => p.getString( key ));
