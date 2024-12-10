@@ -11,7 +11,8 @@ class AppInitializer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<AuthProvider>(
       builder: ( context, authProvider, child ) {
-        return authProvider.isLoggedIn ? HomeScreen() : LoginScreen();
+        final isLoggedIn = authProvider.isLoggedIn ?? false; 
+        return isLoggedIn ? const HomeScreen() : LoginScreen();
       },
 
     );
