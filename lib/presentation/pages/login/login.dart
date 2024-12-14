@@ -2,13 +2,21 @@ import 'package:cbc/providers/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class LoginScreen extends StatelessWidget {
-  LoginScreen({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   final emailController = TextEditingController();
+
   final senhaController = TextEditingController();
 
   final _globalTextKey = GlobalKey<FormState>(); 
+
+  var showPassword = false;
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +62,7 @@ class LoginScreen extends StatelessWidget {
                       children: [
                         TextFormField(
                           controller: emailController,
-                          cursorColor: Colors.blueAccent,
+                          cursorColor: ColorScheme.of(context).secondary,
                           decoration: InputDecoration(
                             labelText: "E-mail",
                             border: const OutlineInputBorder(
@@ -62,7 +70,7 @@ class LoginScreen extends StatelessWidget {
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: Colors.blue.shade300,
+                                color: ColorScheme.of(context).primary,
                               )
                             ),
                           ),
@@ -73,11 +81,18 @@ class LoginScreen extends StatelessWidget {
                         const SizedBox( height: 24 ),
                         TextFormField(
                           controller: senhaController,
-                          cursorColor: Colors.blueAccent,
+                          cursorColor: ColorScheme.of(context).secondary,
                           decoration: InputDecoration(
                             labelText: "Senha",
+                            labelStyle: TextStyle(
+
+                            ),
                             suffixIcon: IconButton(
-                              onPressed: () { },
+                              onPressed: () {
+                                setState(() {
+                                  showPassword = !showPassword;
+                                });
+                              },
                               icon: Icon(
                                 Icons.remove_red_eye_sharp,
                                 size: 24,
@@ -89,7 +104,7 @@ class LoginScreen extends StatelessWidget {
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: Colors.blue.shade300,
+                                color: ColorScheme.of(context).primary,
                               )
                             ),
                             counter: GestureDetector(
@@ -98,13 +113,13 @@ class LoginScreen extends StatelessWidget {
                                 "esqueceu senha?",
                                 style: TextStyle(
                                   fontSize: 12,
-                                  color: Colors.blue.shade300,
+                                  color: Theme.of(context).colorScheme.primary,
                                   fontWeight: FontWeight.w600
                                 ),
                               ),
                             )
                           ),
-                          obscureText: true,
+                          obscureText: showPassword,
                           keyboardType: TextInputType.emailAddress,
                           validator: ( String? value ) {
                             if ( value != null && value.isEmpty ) {
@@ -128,7 +143,7 @@ class LoginScreen extends StatelessWidget {
                       }
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blueAccent.shade200,
+                      backgroundColor: ColorScheme.of(context).primary,
                       alignment: Alignment.center,
                       fixedSize: Size(
                         MediaQuery.of(context).size.width,
