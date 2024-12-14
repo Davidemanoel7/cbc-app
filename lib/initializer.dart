@@ -12,7 +12,7 @@ class AppInitializer extends StatelessWidget {
     return Consumer<AuthProvider>(
       builder: ( context, authProvider, child ) {
         final isLoggedIn = authProvider.isLoggedIn ?? false; 
-        return isLoggedIn ? const HomeScreen() : LoginScreen();
+        return isLoggedIn ? HomeScreen() : const LoginScreen();
       },
 
     );
