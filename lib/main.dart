@@ -1,3 +1,4 @@
+import 'package:cbc/core/theme/theme.dart';
 import 'package:cbc/initializer.dart';
 import 'package:cbc/providers/auth_provider.dart';
 import 'package:cbc/providers/cache_provider.dart';
@@ -27,9 +28,10 @@ class CbcApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      theme: AppTheme.lightTheme,
       debugShowCheckedModeBanner: false,
-      home: AppInitializer(),
+      home: const AppInitializer(),
     );
   }
 }
