@@ -34,36 +34,33 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                 child: Icon( Icons.person,
                 color: Theme.of(context).colorScheme.primary, size: 28),
               ),
-              const Expanded(
+              Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  
                   children: [
                     Text(
                       'Bom dia,',
                       style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
+                        fontSize: 14,
+                        fontWeight: FontWeight.normal,
+                        color: Theme.of(context).colorScheme.surface
                       ),
                     ),
                     Text(
                       'David!',
                       style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
+                        color: Theme.of(context).colorScheme.surface
                       ),
                     ),
                   ],
                 ),
               ),
-              const Icon(
-                Icons.shopping_cart_outlined,
-                color: Colors.white,
-                size: 28
-              ),
+              Image.asset(
+                "./lib/assets/images/market_car.png"
+              )
             ],
           ),
         ),
