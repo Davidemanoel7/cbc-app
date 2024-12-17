@@ -11,23 +11,44 @@ class HomeScreen extends StatelessWidget {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        appBar: const HomeAppBar( sizeHeight: 120 ),
-        body: const TabBarView(
+        appBar: const HomeAppBar( sizeHeight: 160 ),
+        body: TabBarView(
           children: [
-            HomeTabScreen(),
+            const HomeTabScreen(),
             PesquisaTabScreen(),
             PerfilTabScreen(),
           ],
         ),
-        bottomNavigationBar: TabBar(
-          indicatorColor: Theme.of(context).colorScheme.primary,
-          labelColor: Theme.of(context).colorScheme.primary,
-          unselectedLabelColor: Colors.grey.shade400,
-          tabs: const [
-            Tab(icon: Icon(Icons.home), text: 'Home'),
-            Tab(icon: Icon(Icons.shopping_basket_outlined), text: 'Pesquisar'),
-            Tab(icon: Icon(Icons.person), text: 'Perfil'),
-          ],
+        bottomNavigationBar: Container(
+          margin: const EdgeInsets.only(
+            bottom: 16.0,
+            left: 24.0,
+            right: 24.0
+          ),
+          decoration: BoxDecoration(
+            shape: BoxShape.rectangle,
+            borderRadius: BorderRadius.circular( 48.0 ),
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.shade300,
+                blurRadius: 12.0,
+                spreadRadius: 1.0,
+                offset: const Offset(0, 1),
+              ),
+            ],
+          ),
+          child: TabBar(
+            indicatorColor: Theme.of(context).colorScheme.primary,
+            labelColor: Theme.of(context).colorScheme.primary,
+            unselectedLabelColor: Colors.grey.shade400,
+            dividerColor: Colors.transparent,
+            tabs: const [
+              Tab(icon: Icon(Icons.home_outlined), text: 'Home'),
+              Tab(icon: Icon(Icons.shopping_basket_outlined), text: 'Pesquisas'),
+              Tab(icon: Icon(Icons.person_outline_sharp), text: 'Perfil'),
+            ],
+          ),
         ),
       ),
     );
