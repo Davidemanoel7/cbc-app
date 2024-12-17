@@ -1,3 +1,4 @@
+import 'package:cbc/presentation/pages/esqueceusenha/esqueceu_senha.dart';
 import 'package:cbc/providers/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -65,6 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           cursorColor: ColorScheme.of(context).secondary,
                           decoration: InputDecoration(
                             labelText: "E-mail",
+                            labelStyle: Theme.of(context).textTheme.bodyMedium,
                             border: const OutlineInputBorder(
                               borderRadius: BorderRadius.all( Radius.circular(8))
                             ),
@@ -84,9 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           cursorColor: ColorScheme.of(context).secondary,
                           decoration: InputDecoration(
                             labelText: "Senha",
-                            labelStyle: TextStyle(
-
-                            ),
+                            labelStyle: Theme.of(context).textTheme.bodyMedium,
                             suffixIcon: IconButton(
                               onPressed: () {
                                 setState(() {
@@ -108,7 +108,11 @@ class _LoginScreenState extends State<LoginScreen> {
                               )
                             ),
                             counter: GestureDetector(
-                              onTap: (){},
+                              onTap: (){
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(builder: (context) => EsqueceuSenha())
+                                );
+                              },
                               child: Text(
                                 "esqueceu senha?",
                                 style: TextStyle(
