@@ -1,0 +1,117 @@
+{
+    "pesquisas_finalizadas" : [
+        {
+            "nome": "Dezembro/2024",
+            "colaboradores_count": 4,
+            "colaboradores_total": 2,
+            "finalizada": false,
+            "colab_pesquisa": [
+                {
+                    "colaborador": "Wanessa Bezerra",
+                    "supermercado": "Paulinos"
+                },
+                {
+                    "colaborador": "David Emanoel",
+                    "supermercado": "Santa Rita"
+                },
+                {
+                    "colaborador": "",
+                    "supermercado": ""
+                },
+                {
+                    "colaborador": "",
+                    "supermercado": ""
+                },
+                {
+                    "colaborador": "",
+                    "supermercado": ""
+                }
+            ],
+            "df":"s"
+        },
+        {
+            "nome": "Novembro/2024",
+            "colaboradores_count": 4,
+            "colaboradores_total": 4,
+            "finalizada": true,
+            "colab_pesquisa": [
+                {
+                    "colaborador": "Wanessa Bezerra",
+                    "supermercado": "Paulinos"
+                },
+                {
+                    "colaborador": "David Emanoel",
+                    "supermercado": "Santa Rita"
+                },
+                {
+                    "colaborador": "Renata Araújo",
+                    "supermercado": "Pare&Compre"
+                },
+                {
+                    "colaborador": "Ana Lívia",
+                    "supermercado": "Rede Seridó"
+                },
+                {
+                    "colaborador": "Malu",
+                    "supermercado": "LigZarb"
+                }
+            ]
+        },
+        {
+            "nome": "Outubro/2024",
+            "colaboradores_count": 4,
+            "colaboradores_total": 4,
+            "finalizada": true,
+            "colab_pesquisa": [
+                {
+                    "colaborador": "Wanessa Bezerra",
+                    "supermercado": "Paulinos"
+                },
+                {
+                    "colaborador": "David Emanoel",
+                    "supermercado": "Santa Rita"
+                },
+                {
+                    "colaborador": "Renata Araújo",
+                    "supermercado": "Pare&Compre"
+                },
+                {
+                    "colaborador": "Ana Lívia",
+                    "supermercado": "Rede Seridó"
+                },
+                {
+                    "colaborador": "Malu",
+                    "supermercado": "LigZarb"
+                }
+            ]
+        },
+        {
+            "nome": "Setembro/2024",
+            "colaboradores_count": 4,
+            "colaboradores_total": 4,
+            "finalizada": true,
+            "colab_pesquisa": [
+                {
+                    "colaborador": "Wanessa Bezerra",
+                    "supermercado": "Paulinos"
+                },
+                {
+                    "colaborador": "David Emanoel",
+                    "supermercado": "Santa Rita"
+                },
+                {
+                    "colaborador": "Renata Araújo",
+                    "supermercado": "Pare&Compre"
+                },
+                {
+                    "colaborador": "Ana Lívia",
+                    "supermercado": "Rede Seridó"
+                },
+                {
+                    "colaborador": "Malu",
+                    "supermercado": "LigZarb"
+                }
+            ]
+        }
+    ]
+}

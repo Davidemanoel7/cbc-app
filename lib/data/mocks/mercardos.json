@@ -1,0 +1,29 @@
+{
+    "mercados": [
+        {
+            "id": "1012",
+            "nome": "Santa Rita",
+            "enredeco": "Rua 02, Caicó/RN"
+        },
+        {
+            "id": "1013",
+            "nome": "Paulinos",
+            "enredeco": "Rua 03, Caicó/RN"
+        },
+        {
+            "id": "1014",
+            "nome": "Pare&Compre",
+            "enredeco": "Rua 04, Caicó/RN"
+        },
+        {
+            "id": "1015",
+            "nome": "Rede Seridó",
+            "enredeco": "Rua 05, Caicó/RN"
+        },
+        {
+            "id": "1016",
+            "nome": "LigZarb",
+            "enredeco": "Rua 06, Caicó/RN"
+        }
+    ]
+}
