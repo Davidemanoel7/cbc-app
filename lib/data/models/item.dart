@@ -7,7 +7,6 @@ class Item {
   String nome;
   String marca;
   String descricao;
-  Float preco;
   String? imagem;
 
   Item({
@@ -15,7 +14,6 @@ class Item {
     required this.nome,
     required this.marca,
     required this.descricao,
-    required this.preco,
     this.imagem
   });
 
@@ -25,25 +23,21 @@ class Item {
       nome: json['nome'] as String,
       marca: json['marca'] as String,
       descricao: json['descricao'] as String,
-      preco: json['preco'] as Float,
       imagem: json['imagem'] ?? ''
     );
   }
 
-  String getId() => id;
+  String get getId => id;
 
-  String getNome() => nome;
+  String get getNome => nome;
   void setNome( String novoNome ) => nome = novoNome;
 
-  String getMarca() => marca;
+  String get getMarca => marca;
   void setMarca(String novaMarca) => marca = novaMarca;
 
-  String getDesc() => descricao;
+  String get getDesc => descricao;
   void setDesc( novaDescr ) => descricao = novaDescr;
 
-  Float getPreco() => preco;
-  void setPreco( novoPreco ) => preco = novoPreco;
-
-  String getImagem() => imagem ?? '';
+  String get getImagem => imagem ?? '';
   void setImagem( String novaImagem ) => imagem = novaImagem;
 }
