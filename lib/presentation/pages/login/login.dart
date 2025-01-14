@@ -1,4 +1,6 @@
-import 'package:cbc/presentation/pages/esqueceusenha/esqueceu_senha.dart';
+import 'package:cbc/app_coordinator.dart';
+import 'package:cbc/presentation/pages/forgotpass/forgot_password_view.dart';
+import 'package:cbc/presentation/routes/router.dart';
 import 'package:cbc/providers/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -109,9 +111,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             counter: GestureDetector(
                               onTap: (){
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(builder: (context) => EsqueceuSenha())
-                                );
+                                AppCoordinator.push(context,ForgotPasswordView());
+                                // Navigator.pushNamed(context, RoutePaths.forgot);
                               },
                               child: Text(
                                 "esqueceu senha?",
