@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class EsqueceuSenha extends StatelessWidget {
-  EsqueceuSenha({super.key}); 
+class ForgotPasswordView extends StatelessWidget {
+  ForgotPasswordView({super.key}); 
 
   final senhaController = TextEditingController();
   final _globalTextKey = GlobalKey<FormState>();
