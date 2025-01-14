@@ -1,109 +1,142 @@
+import 'package:cbc/app_coordinator.dart';
+import 'package:cbc/core/constants/global_widgets.dart';
+import 'package:cbc/core/widgets/research_card_widget.dart';
+import 'package:cbc/core/widgets/section_list_widget.dart';
+import 'package:cbc/data/models/research.dart';
+import 'package:cbc/presentation/pages/home/home_view_model.dart';
+import 'package:cbc/presentation/pages/markets/markets_view.dart';
+import 'package:cbc/presentation/pages/research_detail/research_detail_view.dart';
+import 'package:cbc/presentation/routes/router.dart';
+import 'package:cbc/providers/provider_base.dart';
 import 'package:flutter/material.dart';
 
 class HomeTabScreen extends StatelessWidget {
   const HomeTabScreen({super.key});
 
-
-  void _showBottomSheetModal( BuildContext context ){
-    showModalBottomSheet(
-      context: context,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
-      isScrollControlled: true, // Permite usar mais espaço da tela
-      builder: (BuildContext context) {
-        return Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min, // Faz a BottomSheet ocupar apenas o espaço necessário
-            children: [
-              Text(
-                "Título da BottomSheet",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 12),
-              Text("Este é o conteúdo da BottomSheet."),
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () => Navigator.pop(context),
-                child: Text("Fechar"),
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-          child: SingleChildScrollView(
+    return ProviderWidget<HomeViewModel>(
+      instance: () => HomeViewModel(),
+      builder: (builder, viewModel) {
+        return Scaffold(
+          body: SafeArea(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              spacing: 16.0,
               children: [
-                Text(
-                  "Pesquisa em andamento",
-                  style: Theme.of(context).textTheme.bodyLarge
-                ),
-                Container(
-                  height: 64,
-                  decoration: BoxDecoration(
-                    color: Colors.grey.shade300,
-                    borderRadius: const BorderRadius.all( Radius.circular(16))
-                  ),
-                ),
-                Text(
-                  "Pesquisas finalizadas",
-                  style: Theme.of(context).textTheme.bodyLarge
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.35,
-                  child: ListView.separated(
-                    separatorBuilder: (context, index) => Divider(
-                      color: Colors.grey.shade100,
-                      indent: 8,
-                      endIndent: 8,
-                    ),
-                    itemCount: 10,
-                    itemBuilder: ( context, index ) =>
-                      Container(
-                        height: 42,
-                        decoration: BoxDecoration(
-                          color: Colors.grey.shade300,
-                          borderRadius: const BorderRadius.all( Radius.circular(16))
-                        ),
-                        child: Text( (1 + index).toString() ),
-                      ),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.center,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      fixedSize: Size(
-                        MediaQuery.of(context).size.width * 0.7,
-                        48
-                      )
-                    ),
-                    onPressed: () {
-                      // _showBottomSheetModal(context);
-                    },
-                    child: Text(
-                      "Cadastrar pesquisa",
-                      style: Theme.of(context).textTheme.labelLarge
-                    )
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 24),
+                    child: SectionListWidget(
+                        numberOfSection: () => 2,
+                        numberOfRowsInSection: (section) {
+                          return section == 0
+                              ? viewModel.pendingResearches.isEmpty
+                                  ? 1
+                                  : viewModel.pendingResearches.length
+                              : viewModel.completedResearches.isEmpty
+                                  ? 1
+                                  : viewModel.completedResearches.length;
+                        },
+                        sectionWidget: (section) {
+                          return Padding(
+                            padding: EdgeInsets.only(
+                                bottom: 8, top: section == 0 ? 0 : 16),
+                            child: Text(
+                              section == 0
+                                  ? 'Pesquisa em andamento'
+                                  : 'Pesquisas finalizadas',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge
+                                  ?.copyWith(fontWeight: FontWeight.bold),
+                            ),
+                          );
+                        },
+                        rowWidget: (section, row) {
+                          return section == 0
+                              ? viewModel.pendingResearches.isEmpty
+                                  ? Center(
+                                      child: Text(
+                                        'A pesquisa desse mês já foi completa! Parabéns!',
+                                        textAlign: TextAlign.center,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium
+                                            ?.copyWith(
+                                                color: const Color(0xFFBDBDBD),
+                                                fontSize: 16),
+                                      ),
+                                    )
+                                  : ResearchCardWidget(
+                                      title: viewModel
+                                          .pendingResearches[row].title,
+                                      isCompleted: viewModel
+                                          .pendingResearches[row].isCompleted,
+                                      percent: viewModel
+                                              .pendingResearches[row].markets
+                                              .where((e) => e.isCompleted)
+                                              .toList()
+                                              .length /
+                                          viewModel.pendingResearches[row]
+                                              .markets.length,
+                                      backgroundColor: const Color(0xFFFEF9D7),
+                                      onPressed: () {
+                                        AppCoordinator.push(context, MarketsView(research: viewModel.pendingResearches[row]));
+                                        // Navigator.pushNamed(
+                                        //     context, RoutePaths.markets,
+                                        //     arguments: viewModel
+                                        //         .pendingResearches[row]);
+                                      },
+                                    )
+                              : viewModel.completedResearches.isEmpty
+                                  ? Center(
+                                      child: Text(
+                                      'Nenhuma pesquisa foi finalizada.',
+                                      textAlign: TextAlign.center,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium
+                                          ?.copyWith(
+                                              color: const Color(0xFFBDBDBD),
+                                              fontSize: 16),
+                                    ))
+                                  : ResearchCardWidget(
+                                      title: viewModel
+                                          .completedResearches[row].title,
+                                      isCompleted: viewModel
+                                          .completedResearches[row].isCompleted,
+                                      onPressed: () {
+                                        AppCoordinator.push(context, ResearchDetailView(research: viewModel.completedResearches[row],),);
+                                        // Navigator.pushNamed(
+                                        //     context, RoutePaths.researchDetail,
+                                        //     arguments: viewModel
+                                        //         .completedResearches[row]);
+                                      },
+                                    );
+                        }),
                   ),
                 )
               ],
             ),
           ),
-        )
-      ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              Research? newResearch = viewModel.createNewResearch();
+              if (viewModel.pendingResearches.isNotEmpty) {
+                showToast(context,
+                    'Há uma pesquisa pendente, finalize-a para iniciar uma nova');
+              } else if (newResearch == null) {
+                showToast(context, "Uma pesquisa já foi iniciada e finalizada esse mês.");
+              } else {
+                AppCoordinator.push(context, MarketsView(research: newResearch,));
+                //Navigator.pushNamed(context, RoutePaths.markets, arguments: newResearch);
+              }
+            },
+            tooltip: "Iniciar uma nova pesquisa",
+            child: const Icon(Icons.add),
+          ),
+        );
+      },
     );
   }
 }
