@@ -1,5 +1,7 @@
 import 'dart:ffi';
 
+import 'package:flutter/material.dart';
+
 class Pesquisa {
   
   String id;
@@ -16,17 +18,17 @@ class Pesquisa {
     required this.finalizada,
   });
 
-  Pesquisa getInstance() {
-    DateTime now = DateTime.now();
+  // Pesquisa getInstance() {
+  //   DateTime now = DateTime.now();
 
-    return Pesquisa(
-            id: "${now.day}${now.month}${_intToMonth( now.month )}${now.hour}${now.minute}${now.second}",
-            nome: "${now.month}/${now.year}",
-            dataFim: "${now.day}/${_intToMonth(now.month)}",
-            dataInicio: "${now.day}/${_intToMonth(now.month)}",
-            finalizada: false
-          );
-  }
+  //   return Pesquisa(
+  //     id: "${now.day}${now.month}${_intToMonth( now.month )}${now.hour}${now.minute}${now.second}",
+  //     nome: "${now.month}/${now.year}",
+  //     dataFim: "${now.day}/${_intToMonth(now.month)}",
+  //     dataInicio: "${now.day}/${_intToMonth(now.month)}",
+  //     finalizada: false
+  //   );
+  // }
 
   factory Pesquisa.fromJson( Map<String, dynamic> json ) {
     return Pesquisa(
@@ -37,6 +39,14 @@ class Pesquisa {
       finalizada: json['finalizada'] as bool,
     );
   }
+
+  Map<String, dynamic> toMap() => {
+    'id': id,
+    'nome': nome,
+    'dataFim': dataFim,
+    'dataInicio': dataInicio,
+    'finalizada': finalizada,
+  };
 
   String getId() => id;
 
@@ -55,7 +65,7 @@ class Pesquisa {
     dataInicio = "${now.day}/${_intToMonth( now.month )}";
   }
 
-  String _intToMonth( int n ) {
+  String? _intToMonth( int n ) {
     switch (n) {
       case 1: return "JAN";
       case 2: return "FEV";
@@ -69,7 +79,7 @@ class Pesquisa {
       case 10: return "OUT";
       case 11: return "NOV";
       case 12: return "DEZ";
-      default:  return "";
+      default: return null;
     }
   }
 }
